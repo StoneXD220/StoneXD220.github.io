@@ -16,7 +16,7 @@
     <title>Apex+ | سيرفر ماينكرافت</title>
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/icon.svg" />
-    <link rel="stylesheet" href="/styles.css?v=7" />
+    <link rel="stylesheet" href="/styles.css?v=11" />
   </head>
   <body>
     <main class="app-shell">
@@ -78,6 +78,7 @@
             <button class="spin-center" id="spinButton" type="button"><span>لف<br /><b>العجلة</b></span></button>
           </div>
         </div>
+        <div class="wheel-selection" id="wheelSelection"><span>🎯</span><strong>السهم يحدد جائزتك</strong><small>لف العجلة وشوف وين توقف</small></div>
         <p class="wheel-note" id="wheelNote">تقدر تلف العجلة الآن</p>
       </section>
 
@@ -123,6 +124,26 @@
         <div class="faq-list"><details><summary>كيف أدخل السيرفر؟ <span>＋</span></summary><p>انسخ العنوان من الأعلى، افتح Minecraft Java، ثم أضفه في Multiplayer.</p></details><details><summary>كيف أستلم جائزتي؟ <span>＋</span></summary><p>بعد الفوز بالعجلة، افتح تكت في Discord وأرسل اسم الجائزة للإدارة.</p></details></div>
       </section>
 
+      <section class="community-section" aria-labelledby="community-title">
+        <div class="section-heading"><div><p class="eyebrow">💬 صوت المجتمع</p><h2 id="community-title">وش رأيك في Apex+؟</h2></div><span class="community-badge">شاركنا رأيك ✨</span></div>
+        <div class="community-grid">
+          <article class="visitor-card">
+            <div class="visitor-icon">👀</div>
+            <div><small>زوار الموقع</small><strong>أعضاء مجتمع Apex+</strong><p>كل زيارة تزيد حماسنا 🔥</p></div>
+            <div class="visitor-counter" aria-label="عداد زوار الموقع"><img src="https://visitor-badge.laobi.icu/badge?page_id=StoneXD220.apexplus&left_text=زوار%20الموقع&left_color=6d4aff&right_color=ff8a00" alt="عدد زوار الموقع" loading="lazy" /><span>عداد حي</span></div>
+          </article>
+          <article class="comment-card">
+            <div class="comment-card-head"><span>📝</span><div><strong>اكتب تعليقك</strong><small>خل الإدارة تعرف رأيك أو اقتراحك</small></div></div>
+            <form id="commentForm" class="comment-form">
+              <input id="commentName" name="name" maxlength="24" placeholder="اسمك داخل السيرفر" autocomplete="nickname" required />
+              <textarea id="commentText" name="comment" maxlength="240" rows="3" placeholder="اكتب رأيك في الموقع أو فكرة تبي نضيفها..." required></textarea>
+              <button type="submit" class="comment-submit">نشر رأيي 💬</button>
+            </form>
+            <div class="comments-list" id="commentsList" aria-live="polite"></div>
+          </article>
+        </div>
+      </section>
+
       <section class="actions-section" aria-label="روابط مهمة">
         <a class="discord-banner" href="https://discord.gg/HeAJQQHcJ" target="_blank" rel="noopener noreferrer"><span class="discord-logo">☁</span><span><strong>انضم لمجتمع Discord 💬</strong><small>افتح تكت واستلم جائزتك وتابع الأخبار</small></span><b>↗</b></a>
         <button class="action-row" id="shareInvite"><span class="row-icon">📣</span><span><strong>شارك الدعوة</strong><small>خل أصحابك يلعبون معك</small></span><b>←</b></button>
@@ -141,6 +162,6 @@
     </dialog>
     <dialog id="rulesDialog"><button class="dialog-close" id="closeRules" aria-label="إغلاق">×</button><p class="eyebrow">📜 قبل الدخول</p><h2>قوانين Apex+</h2><p>احترم اللاعبين، ابتعد عن الغش والسبام، وخلك جزءًا إيجابيًا من المجتمع.</p><p>استمتع باللعب واتبع تعليمات الإدارة للحفاظ على تجربة ممتعة للجميع.</p><button class="primary-button dialog-button" id="dialogCopy">نسخ عنوان السيرفر ←</button></dialog>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Apex+","alternateName":"Apex Plus","description":"بوابتك إلى سيرفر Apex في Minecraft Java","inLanguage":"ar"}</script>
-    <script src="/app.js?v=8"></script>
+    <script src="/app.js?v=11"></script>
   </body>
 </html>

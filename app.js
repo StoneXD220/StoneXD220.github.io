@@ -12,6 +12,9 @@ const prizes = [
   { label: 'حظ أوفر', icon: '🍀', win: false },
   { label: 'بيكاكس خارق', icon: '⛏️', win: true },
 ];
+// Visual order around the wheel, clockwise from the top pointer:
+// diamond, pickaxe, lose, 20K, Apex+ Kit.
+const wheelPrizeOrder = [0, 4, 3, 2, 1];
 
 const toast = document.getElementById('toast');
 let toastTimer;
@@ -91,6 +94,7 @@ const resultTitle = document.getElementById('resultTitle');
 const resultMessage = document.getElementById('resultMessage');
 const resultPrize = document.getElementById('resultPrize');
 const resultDiscord = document.getElementById('resultDiscord');
+const wheelSelection = document.getElementById('wheelSelection');
 let wheelRotation = 0;
 let cooldownTimer;
 
@@ -137,6 +141,8 @@ function showWheelResult(prize) {
   resultPrize.textContent = isWin ? prize.label : 'حظ أوفر · ما فيه جائزة هذه المرة';
   resultDiscord.textContent = isWin ? 'افتح تكت في Discord ↗' : 'ادخل Discord ↗';
   resultDiscord.href = DISCORD_URL;
+  wheelSelection.classList.add('is-result');
+  wheelSelection.innerHTML = `<span>${prize.icon}</span><strong>${isWin ? `وقفت على: ${prize.label}` : 'وقفت على: حظ أوفر'}</strong><small>السهم حدد النتيجة 🎯</small>`;
   resultDialog.showModal();
 }
 function spinWheel() {
@@ -144,13 +150,15 @@ function spinWheel() {
   spinButton.disabled = true;
   localStorage.setItem(COOLDOWN_KEY, String(Date.now()));
   updateCooldownUI();
-  const prizeIndex = Math.floor(Math.random() * prizes.length);
-  const prize = prizes[prizeIndex];
-  const segmentCenter = prizeIndex * 72;
+  const segmentIndex = Math.floor(Math.random() * wheelPrizeOrder.length);
+  const prize = prizes[wheelPrizeOrder[segmentIndex]];
+  const segmentCenter = segmentIndex * 72;
   const currentMod = ((wheelRotation % 360) + 360) % 360;
   const target = wheelRotation + 360 * 6 + (360 - currentMod) - segmentCenter;
   wheelRotation = target;
   prizeWheel.style.transform = `rotate(${target}deg)`;
+  wheelSelection.classList.remove('is-result');
+  wheelSelection.innerHTML = '<span>🎯</span><strong>العجلة تلف...</strong><small>استنى وين يوقف السهم</small>';
   wheelNote.textContent = 'العجلة تلف... بالتوفيق!';
   wheelNote.classList.remove('locked-note');
   window.setTimeout(() => showWheelResult(prize), 5850);
@@ -281,3 +289,39 @@ updateQuestProgress();
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
 }
+
+
+// Community comments: local device storage fallback for the static site.
+const COMMENTS_KEY = 'apexPlusComments';
+const commentForm = document.getElementById('commentForm');
+const commentsList = document.getElementById('commentsList');
+function escapeComment(value) {
+  return String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[char]));
+}
+function readComments() {
+  try {
+    const comments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '[]');
+    return Array.isArray(comments) ? comments.slice(0, 12) : [];
+  } catch { return []; }
+}
+function renderComments() {
+  const comments = readComments();
+  if (!comments.length) {
+    commentsList.innerHTML = '<div class="comments-empty">كن أول واحد يكتب رأيه في Apex+ ✨</div>';
+    return;
+  }
+  commentsList.innerHTML = comments.map((comment) => `<article class="comment-item"><div class="comment-meta"><strong>💬 ${escapeComment(comment.name)}</strong><time>${escapeComment(comment.date)}</time></div><p>${escapeComment(comment.text)}</p></article>`).join('');
+}
+commentForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  if (!name || !text) return;
+  const comments = readComments();
+  comments.unshift({ name: name.slice(0, 24), text: text.slice(0, 240), date: new Intl.DateTimeFormat('ar', { day: 'numeric', month: 'short' }).format(new Date()) });
+  localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments.slice(0, 12)));
+  commentForm.reset();
+  renderComments();
+  showToast('تم حفظ رأيك على هذا الجهاز ✅');
+});
+renderComments();
