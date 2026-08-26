@@ -1,0 +1,14 @@
+{
+  "name": "Apex+ | سيرفر ماينكرافت",
+  "short_name": "Apex+",
+  "description": "بوابتك إلى سيرفر Apex في Minecraft Java",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090d",
+  "theme_color": "#0b0a0f",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
