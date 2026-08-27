@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://4173-i42bvto16x6mh04hmjej8-b9b8269a.us3.manus.computer/sitemap.xml
+Sitemap: https://stonexd220.github.io/sitemap.xml

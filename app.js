@@ -7,13 +7,13 @@ const GAME_BEST_KEY = 'apexPlusGameBest';
 
 const prizes = [
   { label: 'دروع دايموند وأدوات كاملة', icon: '💎', win: true },
-  { label: 'Apex+ Kit', icon: '🎁', win: true },
+  { label: 'Apex SMP Kit', icon: '🎁', win: true },
   { label: '20K', icon: '💰', win: true },
   { label: 'حظ أوفر', icon: '🍀', win: false },
   { label: 'بيكاكس خارق', icon: '⛏️', win: true },
 ];
 // Visual order around the wheel, clockwise from the top pointer:
-// diamond, pickaxe, lose, 20K, Apex+ Kit.
+// diamond, pickaxe, lose, 20K, Apex SMP Kit.
 const wheelPrizeOrder = [0, 4, 3, 2, 1];
 
 const toast = document.getElementById('toast');
@@ -49,7 +49,7 @@ async function copyIp() {
 async function shareInvite() {
   if (navigator.share) {
     try {
-      await navigator.share({ title: 'Apex+ Minecraft', text: INVITE_TEXT });
+      await navigator.share({ title: 'Apex SMP Minecraft', text: INVITE_TEXT });
       return;
     } catch (error) {
       if (error.name === 'AbortError') return;
@@ -133,7 +133,7 @@ function showWheelResult(prize) {
   const isWin = prize.win;
   resultDialog.classList.toggle('is-loss', !isWin);
   resultVisual.textContent = prize.icon;
-  resultEyebrow.textContent = isWin ? 'جائزة Apex+' : 'نتيجة العجلة';
+  resultEyebrow.textContent = isWin ? 'جائزة Apex SMP' : 'نتيجة العجلة';
   resultTitle.textContent = isWin ? 'مبروك ربحت!' : 'حظ أوفر';
   resultMessage.textContent = isWin
     ? 'صورتك الرابحة جاهزة — افتح تكت في الديسكورد لاستلام جائزتك.'
@@ -254,7 +254,7 @@ const tipText = document.getElementById('tipText');
 tipButton.addEventListener('click', () => {
   const current = tips.indexOf(tipText.textContent);
   tipText.textContent = tips[(current + 1) % tips.length];
-  showToast('هذه فكرة Apex+ لك اليوم 💡');
+  showToast('هذه فكرة Apex SMP لك اليوم 💡');
 });
 const statusPulse = document.getElementById('statusPulse');
 const pulseText = document.getElementById('pulseText');
@@ -307,7 +307,7 @@ function readComments() {
 function renderComments() {
   const comments = readComments();
   if (!comments.length) {
-    commentsList.innerHTML = '<div class="comments-empty">كن أول واحد يكتب رأيه في Apex+ ✨</div>';
+    commentsList.innerHTML = '<div class="comments-empty">كن أول واحد يكتب رأيه في Apex SMP ✨</div>';
     return;
   }
   commentsList.innerHTML = comments.map((comment) => `<article class="comment-item"><div class="comment-meta"><strong>💬 ${escapeComment(comment.name)}</strong><time>${escapeComment(comment.date)}</time></div><p>${escapeComment(comment.text)}</p></article>`).join('');

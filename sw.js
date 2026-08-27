@@ -1,5 +1,5 @@
-const CACHE_NAME = 'apex-plus-v11';
-const APP_ASSETS = ['/', '/index.html', '/styles.css?v=11', '/app.js?v=11', '/manifest.webmanifest', '/icon.svg'];
+const CACHE_NAME = 'apex-smp-v12';
+const APP_ASSETS = ['/', '/index.html', '/styles.css?v=12', '/app.js?v=12', '/manifest.webmanifest', '/icon.svg'];
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_ASSETS)));
   self.skipWaiting();
