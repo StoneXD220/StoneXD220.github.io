@@ -1,6 +1,6 @@
 const SERVER_IP = 'Inv-2.aryncloud.in:25537';
 const DISCORD_URL = 'https://discord.gg/HeAJQQHcJ';
-const INVITE_TEXT = `🔥 سيرفر ماينكرافت جديد! 🔥\n\n🚀 السيرفر جاهز وناطرينكم!\n\n🛒 شوب مرتب وحلو\n💰 سيل وعروض قوية\n📊 سكور بورد فخم\n🏰 سبون جميل ومميز\n👑 رتب حلوة ومميزة\n🎁 كيتات متنوعة وحلوة\n⚡ رامات قوية ولاق خفيف\n🌐 دخول سريع واستقرار ممتاز\n\n📌 IP: ${SERVER_IP}\n\n@everyone 🔔 لا تفوتون الفرصة، ادخلوا وجربوا السيرفر! 🔥`;
+const INVITE_TEXT = `🔥 سيرفر ماينكرافت جديد! 🔥\n\n🛠️ السيرفر تحت الصيانة مؤقتًا وناطرين رجعتكم!\n\n🛒 شوب مرتب وحلو\n💰 سيل وعروض قوية\n📊 سكور بورد فخم\n🏰 سبون جميل ومميز\n👑 رتب حلوة ومميزة\n🎁 كيتات متنوعة وحلوة\n⚡ رامات قوية ولاق خفيف\n🌐 دخول سريع واستقرار ممتاز\n\n📌 IP: ${SERVER_IP}\n\n@everyone 🔔 لا تفوتون الفرصة، ادخلوا وجربوا السيرفر! 🔥`;
 const COOLDOWN_KEY = 'apexPlusWheelLastSpin';
 const COOLDOWN_MS = 5 * 24 * 60 * 60 * 1000;
 const GAME_BEST_KEY = 'apexPlusGameBest';
@@ -259,9 +259,9 @@ tipButton.addEventListener('click', () => {
 const statusPulse = document.getElementById('statusPulse');
 const pulseText = document.getElementById('pulseText');
 statusPulse.addEventListener('click', () => {
-  pulseText.textContent = 'السيرفر جاهز ويستقبلك الآن ✅';
+  pulseText.textContent = 'Minecraft تحت الصيانة — تابع Discord للعودة 🛠️';
   statusPulse.classList.add('is-checked');
-  showToast('Apex شغال — حياك بالسيرفر 📡');
+  showToast('السيرفر تحت الصيانة حاليًا — تابع Discord 📡');
 });
 const questProgress = document.getElementById('questProgress');
 const questItems = [...document.querySelectorAll('.quest-item')];

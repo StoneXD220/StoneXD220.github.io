@@ -11,7 +11,7 @@
     <meta name="keywords" content="Apex SMP, Apex SMP Minecraft, Minecraft, سيرفر ماينكرافت, Inv-2.aryncloud.in" />
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content="Apex SMP | سيرفر ماينكرافت" />
-    <meta property="og:description" content="ادخل عالم Apex، لف عجلة الجوائز والعب تحدي المجتمع." />
+    <meta property="og:description" content="ادخل عالم Apex SMP، تابع الصيانة، لف عجلة الجوائز والعب تحدي المجتمع." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://stonexd220.github.io/" />
     <meta property="og:image" content="https://stonexd220.github.io/og-image.jpg" />
@@ -20,12 +20,12 @@
     <meta property="og:image:alt" content="Apex SMP — مجتمع سيرفر ماينكرافت" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Apex SMP | سيرفر ماينكرافت" />
-    <meta name="twitter:description" content="ادخل عالم Apex، لف عجلة الجوائز والعب تحدي المجتمع." />
+    <meta name="twitter:description" content="ادخل عالم Apex SMP، تابع الصيانة، لف عجلة الجوائز والعب تحدي المجتمع." />
     <meta name="twitter:image" content="https://stonexd220.github.io/og-image.jpg" />
     <title>Apex SMP | سيرفر ماينكرافت</title>
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/icon.svg" />
-    <link rel="stylesheet" href="/styles.css?v=12" />
+    <link rel="stylesheet" href="/styles.css?v=13" />
   </head>
   <body>
     <main class="app-shell">
@@ -40,17 +40,23 @@
           <small>مجتمعك. لعبتك. عالمك.</small>
         </div>
         <div class="top-actions">
-          <span class="live-chip"><i></i> حي الآن</span>
+          <span class="live-chip maintenance-chip"><i></i> صيانة السيرفر</span>
           <button class="icon-button" id="shareTop" aria-label="مشاركة التطبيق">↗</button>
         </div>
       </header>
 
+      <section class="maintenance-banner" aria-label="حالة سيرفر Minecraft">
+        <div class="maintenance-icon">🛠️</div>
+        <div><strong>Minecraft تحت صيانة السيرفر</strong><small>تابع Discord لمعرفة وقت العودة وآخر الأخبار</small></div>
+        <a href="https://discord.gg/HeAJQQHcJ" target="_blank" rel="noopener noreferrer">تابعنا في Discord ↗</a>
+      </section>
+
       <section class="hero-card" aria-labelledby="welcome-title">
         <div class="hero-copy">
-          <div class="hero-badge"><span>🔥</span> السيرفر متاح الآن</div>
-          <p class="eyebrow">مرحبًا بك في عالم Apex</p>
+          <div class="hero-badge maintenance-badge"><span>🛠️</span> Minecraft تحت الصيانة</div>
+          <p class="eyebrow">مرحبًا بك في عالم Apex SMP</p>
           <h1 id="welcome-title">جاهز تدخل<br /><em>المغامرة؟</em></h1>
-          <p class="hero-text">سيرفر ماينكرافت جديد بانتظارك. ادخل الآن وكن جزءًا من مجتمعنا.</p>
+          <p class="hero-text">السيرفر تحت الصيانة مؤقتًا، لكن مجتمع Apex SMP ينتظرك. ادخل Discord وتابع موعد العودة والفعاليات القادمة.</p>
           <div class="mini-stats" aria-label="مزايا سريعة">
             <span>⚡ لاق خفيف</span><span>🛡️ Java</span><span>🎮 أصلي ومكرك</span>
           </div>
@@ -115,7 +121,7 @@
       </section>
 
       <section class="news-section" aria-labelledby="news-title">
-        <div class="section-heading"><div><p class="eyebrow">📢 آخر المستجدات</p><h2 id="news-title">وش صاير في Apex؟</h2></div><span class="news-live">جديد 🔴</span></div>
+        <div class="section-heading"><div><p class="eyebrow">📢 آخر المستجدات</p><h2 id="news-title">وش صاير في Apex SMP؟</h2></div><span class="news-live">جديد 🔴</span></div>
         <div class="news-grid">
           <article class="news-card news-main"><span class="news-emoji">🎉</span><div><small>فعالية الأسبوع</small><strong>تحدي الأسرع بدأ!</strong><p>الحق الإيموجي واجمع أعلى نقاط وشارك نتيجتك مع أصحابك.</p></div><span class="news-arrow">↗</span></article>
           <article class="news-card"><span class="news-emoji">🛒</span><div><small>المتجر</small><strong>عروض جديدة</strong><p>شيّك على السيل قبل ما يخلص.</p></div></article>
@@ -124,10 +130,10 @@
       </section>
 
       <section class="command-section" aria-labelledby="command-title">
-        <div class="section-heading"><div><p class="eyebrow">🧠 مركز Apex الذكي</p><h2 id="command-title">أشياء تضغطها وتستفيد</h2></div></div>
+        <div class="section-heading"><div><p class="eyebrow">🧠 مركز Apex SMP الذكي</p><h2 id="command-title">أشياء تضغطها وتستفيد</h2></div></div>
         <div class="command-grid">
           <button class="command-card tip-card" id="tipButton" type="button"><span class="command-icon">💡</span><span><strong>فكرة اليوم</strong><small id="tipText">اضغط وخذ نصيحة للاعبين</small></span><b>↻</b></button>
-          <button class="command-card status-card" id="statusPulse" type="button"><span class="command-icon">📡</span><span><strong>فحص السيرفر</strong><small id="pulseText">اضغط لتحديث الحالة</small></span><b>↻</b></button>
+          <button class="command-card status-card maintenance-status-card" id="statusPulse" type="button"><span class="command-icon">🛠️</span><span><strong>Minecraft تحت الصيانة</strong><small id="pulseText">تابع Discord لمعرفة وقت العودة</small></span><b>↻</b></button>
         </div>
         <div class="quest-box"><div class="quest-title"><span>🗺️ مهامك اليوم</span><small id="questProgress">0/3 مكتملة</small></div><div class="quest-list"><button class="quest-item" data-quest="0" type="button"><span>🎮</span><span>ادخل السيرفر وجرب اللعب</span><i>○</i></button><button class="quest-item" data-quest="1" type="button"><span>📣</span><span>شارك Apex SMP مع صديق</span><i>○</i></button><button class="quest-item" data-quest="2" type="button"><span>🎯</span><span>العب تحدي الإيموجي</span><i>○</i></button></div></div>
         <div class="faq-list"><details><summary>كيف أدخل السيرفر؟ <span>＋</span></summary><p>انسخ العنوان من الأعلى، افتح Minecraft Java، ثم أضفه في Multiplayer.</p></details><details><summary>كيف أستلم جائزتي؟ <span>＋</span></summary><p>بعد الفوز بالعجلة، افتح تكت في Discord وأرسل اسم الجائزة للإدارة.</p></details></div>
@@ -171,6 +177,6 @@
     </dialog>
     <dialog id="rulesDialog"><button class="dialog-close" id="closeRules" aria-label="إغلاق">×</button><p class="eyebrow">📜 قبل الدخول</p><h2>قوانين Apex SMP</h2><p>احترم اللاعبين، ابتعد عن الغش والسبام، وخلك جزءًا إيجابيًا من المجتمع.</p><p>استمتع باللعب واتبع تعليمات الإدارة للحفاظ على تجربة ممتعة للجميع.</p><button class="primary-button dialog-button" id="dialogCopy">نسخ عنوان السيرفر ←</button></dialog>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Apex SMP","alternateName":"Apex SMP","description":"بوابتك إلى سيرفر Apex في Minecraft Java","inLanguage":"ar"}</script>
-    <script src="/app.js?v=12"></script>
+    <script src="/app.js?v=13"></script>
   </body>
 </html>
