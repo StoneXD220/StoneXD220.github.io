@@ -1,19 +1,19 @@
 const DISCORD_URL = 'https://discord.gg/j2Q6sb6rG';
-const INVITE_TEXT = `🔥 سيرفر ماينكرافت جديد! 🔥\n\n🚀 السيرفر جاهز وناطرينكم!\n\n🛒 شوب مرتب وحلو\n💰 سيل وعروض قوية\n📊 سكور بورد فخم\n🏰 سبون جميل ومميز\n👑 رتب حلوة ومميزة\n🎁 كيتات متنوعة وحلوة\n⚡ رامات قوية ولاق خفيف\n🌐 دخول سريع واستقرار ممتاز\n\n💬 Discord: ${DISCORD_URL}\n@everyone 🚧 السيرفر قيد الإنشاء — تابعونا لمعرفة موعد الافتتاح! 🔥`;
+const INVITE_TEXT = `@everyone\n\n🚧 Apex SMP قيد الإنشاء! 🚧\n\nنبني لكم عالم Minecraft مختلف: فعاليات، تحديات، جوائز يومية، ومجتمع حماسي.\n\n🔥 كن من أوائل اللاعبين\n🎁 لف عجلة الجائزة اليومية\n🎮 جهّز فريقك للانطلاق\n📣 تابع Discord لمعرفة موعد الافتتاح والفعاليات\n\n💬 Discord: ${DISCORD_URL}`;
 const COOLDOWN_KEY = 'apexPlusWheelLastSpin';
 const COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const GAME_BEST_KEY = 'apexPlusGameBest';
 
 const prizes = [
-  { label: 'دروع دايموند وأدوات كاملة', icon: '💎', win: true },
-  { label: 'Apex SMP Kit', icon: '🎁', win: true },
-  { label: '20K', icon: '💰', win: true },
-  { label: 'حظ أوفر', icon: '🍀', win: false },
-  { label: 'بيكاكس خارق', icon: '⛏️', win: true },
+  { label: 'خبز وحديد', detail: '16 خبز + 8 حديد', icon: '🥖', chance: 32, win: true },
+  { label: 'ذهب وفحم', detail: '8 ذهب + 16 فحم', icon: '🪙', chance: 25, win: true },
+  { label: 'قوس وسهام', detail: 'قوس + 16 سهم', icon: '🏹', chance: 18, win: true },
+  { label: 'زمردات', detail: '4 زمردات', icon: '💚', chance: 15, win: true },
+  { label: 'حظ أوفر', detail: 'ارجع بكرة وجرب من جديد', icon: '🍀', chance: 10, win: false },
 ];
 // Visual order around the wheel, clockwise from the top pointer:
-// diamond, pickaxe, lose, 20K, Apex SMP Kit.
-const wheelPrizeOrder = [0, 4, 3, 2, 1];
+// bread/iron, gold/coal, lose, bow/arrows, emeralds.
+const wheelPrizeOrder = [0, 1, 4, 2, 3];
 
 const toast = document.getElementById('toast');
 let toastTimer;
@@ -126,7 +126,7 @@ function showWheelResult(prize) {
   resultMessage.textContent = isWin
     ? 'صورتك الرابحة جاهزة — افتح تكت في الديسكورد لاستلام جائزتك.'
     : 'ما ربحت شي للأسف. جرب مرة ثانية بعد انتهاء الكولدون.';
-  resultPrize.textContent = isWin ? prize.label : 'حظ أوفر · ما فيه جائزة هذه المرة';
+  resultPrize.textContent = isWin ? `${prize.label} · ${prize.detail}` : 'حظ أوفر · ما فيه جائزة هذه المرة';
   resultDiscord.textContent = isWin ? 'افتح تكت في Discord ↗' : 'ادخل Discord ↗';
   resultDiscord.href = DISCORD_URL;
   wheelSelection.classList.add('is-result');
@@ -138,8 +138,15 @@ function spinWheel() {
   spinButton.disabled = true;
   localStorage.setItem(COOLDOWN_KEY, String(Date.now()));
   updateCooldownUI();
-  const segmentIndex = Math.floor(Math.random() * wheelPrizeOrder.length);
-  const prize = prizes[wheelPrizeOrder[segmentIndex]];
+  const roll = Math.random() * prizes.reduce((sum, prizeItem) => sum + prizeItem.chance, 0);
+  let cursor = 0;
+  let prizeIndex = prizes.length - 1;
+  for (let index = 0; index < prizes.length; index += 1) {
+    cursor += prizes[index].chance;
+    if (roll < cursor) { prizeIndex = index; break; }
+  }
+  const segmentIndex = wheelPrizeOrder.indexOf(prizeIndex);
+  const prize = prizes[prizeIndex];
   const segmentCenter = segmentIndex * 72;
   const currentMod = ((wheelRotation % 360) + 360) % 360;
   const target = wheelRotation + 360 * 6 + (360 - currentMod) - segmentCenter;
@@ -239,25 +246,25 @@ const tips = [
 ];
 const tipButton = document.getElementById('tipButton');
 const tipText = document.getElementById('tipText');
-tipButton.addEventListener('click', () => {
+tipButton?.addEventListener('click', () => {
   const current = tips.indexOf(tipText.textContent);
   tipText.textContent = tips[(current + 1) % tips.length];
   showToast('هذه فكرة Apex SMP لك اليوم 💡');
 });
 const statusPulse = document.getElementById('statusPulse');
 const pulseText = document.getElementById('pulseText');
-statusPulse.addEventListener('click', () => {
+statusPulse?.addEventListener('click', () => {
   pulseText.textContent = 'السيرفر قيد الإنشاء — تابع Discord 🚧';
   statusPulse.classList.add('is-checked');
-  showToast('Apex SMP قيد الإنشاء — تابع Discord لمعرفة الافتتاح 🚧');
+  showToast('تابع Discord لمعرفة موعد افتتاح Apex SMP 🚧');
 });
 const questProgress = document.getElementById('questProgress');
 const questItems = [...document.querySelectorAll('.quest-item')];
 const savedQuests = JSON.parse(localStorage.getItem('apexPlusQuests') || '[]');
 function updateQuestProgress() {
   const completed = questItems.filter((item) => item.classList.contains('done')).length;
-  questProgress.textContent = `${completed}/3 مكتملة`;
-  if (completed === questItems.length) showToast('كفو! خلصت مهامك اليومية 🏆');
+  if (questProgress) questProgress.textContent = `${completed}/3 مكتملة`;
+  if (questItems.length && completed === questItems.length) showToast('كفو! خلصت مهامك اليومية 🏆');
 }
 questItems.forEach((item, index) => {
   if (savedQuests.includes(index)) {
@@ -313,3 +320,52 @@ commentForm?.addEventListener('submit', (event) => {
   showToast('تم حفظ رأيك على هذا الجهاز ✅');
 });
 renderComments();
+
+// Daily return loop: keeps a lightweight streak on the visitor's device.
+const DAILY_KEY = 'apexSmpDailyCheckin';
+const dailyStreak = document.getElementById('dailyStreak');
+const dailyClaim = document.getElementById('dailyClaim');
+const dailyClaimStatus = document.getElementById('dailyClaimStatus');
+const dailyShare = document.getElementById('dailyShare');
+function localDay(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+function previousDay(key) {
+  const date = new Date(`${key}T12:00:00`);
+  date.setDate(date.getDate() - 1);
+  return localDay(date);
+}
+function readDailyCheckin() {
+  try { return JSON.parse(localStorage.getItem(DAILY_KEY) || '{}'); } catch { return {}; }
+}
+function renderDailyCheckin() {
+  const saved = readDailyCheckin();
+  const today = localDay();
+  const streak = Number(saved.streak) > 0 ? Number(saved.streak) : 0;
+  if (!dailyStreak || !dailyClaim || !dailyClaimStatus) return;
+  dailyStreak.textContent = `${streak} ${streak === 1 ? 'يوم متتالٍ' : 'أيام متتالية'}`;
+  const claimed = saved.lastDate === today;
+  dailyClaim.disabled = claimed;
+  dailyClaim.textContent = claimed ? 'تم تسجيل اليوم ✓' : 'استلم دخول اليوم';
+  dailyClaimStatus.textContent = claimed ? 'كفو! ارجع بكرة وحافظ على السلسلة 🔥' : 'اضغط لتسجيل حضورك اليومي';
+}
+dailyClaim?.addEventListener('click', () => {
+  const today = localDay();
+  const saved = readDailyCheckin();
+  if (saved.lastDate === today) return;
+  const nextStreak = saved.lastDate === previousDay(today) ? Number(saved.streak || 0) + 1 : 1;
+  localStorage.setItem(DAILY_KEY, JSON.stringify({ lastDate: today, streak: nextStreak }));
+  renderDailyCheckin();
+  showToast(nextStreak >= 7 ? 'أسبوع كامل! أنت من أساطير Apex SMP 🏆' : `تم تسجيل دخولك اليومي · السلسلة ${nextStreak} 🔥`);
+});
+dailyShare?.addEventListener('click', shareInvite);
+renderDailyCheckin();
+
+const dailyHero = document.getElementById('dailyHero');
+dailyHero?.addEventListener('click', () => {
+  document.getElementById('dailyClaim')?.click();
+  document.getElementById('daily')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
