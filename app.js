@@ -1,6 +1,5 @@
-const SERVER_IP = 'Inv-2.aryncloud.in:25537';
 const DISCORD_URL = 'https://discord.gg/j2Q6sb6rG';
-const INVITE_TEXT = `🔥 سيرفر ماينكرافت جديد! 🔥\n\n🚀 السيرفر جاهز وناطرينكم!\n\n🛒 شوب مرتب وحلو\n💰 سيل وعروض قوية\n📊 سكور بورد فخم\n🏰 سبون جميل ومميز\n👑 رتب حلوة ومميزة\n🎁 كيتات متنوعة وحلوة\n⚡ رامات قوية ولاق خفيف\n🌐 دخول سريع واستقرار ممتاز\n\n💬 Discord: ${DISCORD_URL}\n📌 IP: ${SERVER_IP}\n\n@everyone 🔔 لا تفوتون الفرصة، ادخلوا وجربوا السيرفر! 🔥`;
+const INVITE_TEXT = `🔥 سيرفر ماينكرافت جديد! 🔥\n\n🚀 السيرفر جاهز وناطرينكم!\n\n🛒 شوب مرتب وحلو\n💰 سيل وعروض قوية\n📊 سكور بورد فخم\n🏰 سبون جميل ومميز\n👑 رتب حلوة ومميزة\n🎁 كيتات متنوعة وحلوة\n⚡ رامات قوية ولاق خفيف\n🌐 دخول سريع واستقرار ممتاز\n\n💬 Discord: ${DISCORD_URL}\n@everyone 🚧 السيرفر قيد الإنشاء — تابعونا لمعرفة موعد الافتتاح! 🔥`;
 const COOLDOWN_KEY = 'apexPlusWheelLastSpin';
 const COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const GAME_BEST_KEY = 'apexPlusGameBest';
@@ -41,11 +40,6 @@ async function copyText(text, successMessage) {
   showToast(successMessage);
 }
 
-async function copyIp() {
-  await copyText(SERVER_IP, 'تم نسخ عنوان السيرفر بنجاح ✅');
-  document.getElementById('statusMessage').textContent = 'تم النسخ · افتح Minecraft Java والصق العنوان 🎮';
-}
-
 async function shareInvite() {
   if (navigator.share) {
     try {
@@ -58,18 +52,12 @@ async function shareInvite() {
   await copyText(INVITE_TEXT, 'تم نسخ الدعوة للمشاركة 📣');
 }
 
-document.getElementById('copyIp').addEventListener('click', copyIp);
-document.getElementById('copyAndJoin').addEventListener('click', copyIp);
 document.getElementById('shareInvite').addEventListener('click', shareInvite);
 document.getElementById('shareTop').addEventListener('click', shareInvite);
 
 const rulesDialog = document.getElementById('rulesDialog');
 document.getElementById('showRules').addEventListener('click', () => rulesDialog.showModal());
 document.getElementById('closeRules').addEventListener('click', () => rulesDialog.close());
-document.getElementById('dialogCopy').addEventListener('click', async () => {
-  await copyIp();
-  rulesDialog.close();
-});
 rulesDialog.addEventListener('click', (event) => {
   if (event.target === rulesDialog) rulesDialog.close();
 });
@@ -259,9 +247,9 @@ tipButton.addEventListener('click', () => {
 const statusPulse = document.getElementById('statusPulse');
 const pulseText = document.getElementById('pulseText');
 statusPulse.addEventListener('click', () => {
-  pulseText.textContent = 'السيرفر جاهز ويستقبلك الآن ✅';
+  pulseText.textContent = 'السيرفر قيد الإنشاء — تابع Discord 🚧';
   statusPulse.classList.add('is-checked');
-  showToast('Apex SMP شغال — حياك بالسيرفر 📡');
+  showToast('Apex SMP قيد الإنشاء — تابع Discord لمعرفة الافتتاح 🚧');
 });
 const questProgress = document.getElementById('questProgress');
 const questItems = [...document.querySelectorAll('.quest-item')];
